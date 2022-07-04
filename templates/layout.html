@@ -1,0 +1,39 @@
+<!DOCTYPE html> {% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ybblog</title>
+</head>
+
+<body>
+
+    {% include "includes/navbar.html" %}
+
+    <div style="margin-top : 100px; margin-bottom: 100px;" class="container">
+
+
+        {% if messages %} {% for message in messages %}
+        <div{% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %} {% endif %}
+
+    <div style="margin-top: 100px;" class="container">
+        {% block body %} {% endblock %}
+    </div>
+    </div>
+
+
+
+
+
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!--225.videoda script dosyalarını nasıl sadeceleştirdiğimiz anlatılıyor-->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block body %}
+
+<div style="float: right;" class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+            <form>
+                {% csrf_token %}
+                <input class="search_input" type="text" name="keyword" placeholder="Search...">
+                <button type="submit" class="btn btn-danger">Ara</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--views def articles altına bir kaçtane aramayla alaklı koşullar yazdık,incele-->
+
+<div class="row">
+    <div class="container">
+        <h3>Makaleler</h3>
+    </div>
+</div>
+
+<hr class="border-dark"> {% if articles %} {% for article in articles %}
+
+
+
+<div class="row">
+    <div class="container">
+
+        <!-- Post content-->
+        <div class="col-lg-8">
+            <!-- Post header-->
+            <header class="mb-4">
+                <!-- Post title-->
+                <a href="{% url 'article:detail' article.id %}">
+                    <!--buraya yazdığımız kod aslında /articles/article/{{article.id}} nin kısaltmasıdır-->">
+                    <h2 class="fw-bolder mb-1">{{article.title}}</h2>
+                </a>
+                <p class="lead">
+                    {{article.author.username}} tarafından yayınlandı.
+                </p>
+                <!-- Post meta content-->
+                <div class="text-muted fst-italic mb-2">{{article.created_date}}</div>
+
+            </header>
+
+
+
+
+            <!-- Preview image figure-->
+            {% if article.article_image %}
+            <a href="{% url 'article:detail' article.id %}">
+                <figure class="mb-4"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt="..." /></figure>
+            </a>
+            <!--buradaki önemli nokta meseala yukarıda da yaptık bunu. Makalelerin isimlerine veya resimlerine bastığımızda
+            direk makalelerin içerisine girebilmek için a etiketi oluşturup href bölümüne gideceğimiz yeri yazmamız gerekiyor-->
+
+            {% endif %}
+            <!--Post content-->
+            <p class="lead">
+                {{article.content|safe|truncatewords:30}}
+            </p>
+
+            <a style="float: right;" href="{% url 'article:detail' article.id %}">Devamını oku..</a>
+
+            <hr>
+
+
+        </div>
+    </div>
+
+</div>
+
+{% endfor %} {% else %}
+<div class="alert alert-danger">
+    Makale Bulunamadı
+</div>
+{% endif %} {% endblock %}
