@@ -126,11 +126,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ] #https://docs.djangoproject.com/en/2.0/howto/static-files/ bu sayfadan ekledik bunu sebebi ise static dosyasına erişimi kolaylatırmak için
-CRISPY_TEMPLATE_PACK = "bootstrap4" #bootstrap4 ü eklemek için bunu böyle buraya yazmamız lazıms
+CRISPY_TEMPLATE_PACK = "bootstrap4" #bootstrap4 ü eklemek için bunu böyle buraya yazmamız lazım
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles") # Burada sayfalara kaydettiğim how to  manage static web sitesinden static klasörüne nasıl hakim
+STATIC_ROOT = os.path.join(BASE_DIR,"/static/") # Burada sayfalara kaydettiğim how to  manage static web sitesinden static klasörüne nasıl hakim
 # olabileceğimizi anlatıyor. Takıldığın da sayfaları incele. statici çalıştırmak için de py manage.py collectstatic komutunu yazmamız gerekiyor. bunu yazdıktan sonra staticfiles diye sol tarafta
 #klasör oluşacak ve bütün admin dahil css js komutlarını içerecek.
 
